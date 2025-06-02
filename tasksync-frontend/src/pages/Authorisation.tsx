@@ -32,7 +32,7 @@
             setError('');
         } else {
             localStorage.setItem('token', data.token);
-            navigate('/dashboard');
+            navigate('/tasks');
         }
         } else {
         setError(data.message || 'Auth failed');
