@@ -1,0 +1,33 @@
+/* src/pages/Authorization.css */
+
+.auth-wrapper {
+  @apply h-screen w-screen bg-zinc-950 flex items-center justify-center px-4;
+}
+
+.auth-card {
+  @apply w-full max-w-md bg-zinc-900 p-8 rounded-2xl shadow-2xl border border-zinc-800 space-y-6;
+}
+
+.auth-title {
+  @apply text-2xl font-bold text-center text-white;
+}
+
+.auth-input-group {
+  @apply space-y-2;
+}
+
+.auth-error {
+  @apply text-red-500 text-sm;
+}
+
+.auth-button {
+  @apply w-full;
+}
+
+.auth-toggle {
+  @apply text-sm text-center text-zinc-400;
+}
+
+.auth-toggle span {
+  @apply underline cursor-pointer text-zinc-200;
+}

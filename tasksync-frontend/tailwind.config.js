@@ -15,7 +15,16 @@ export default {
   darkMode: 'class',
   content: ["./index.html","./src/**/*.{js,ts,jsx,tsx}"],
   theme:{
-    extend: {},
+    extend: {
+  borderRadius: {
+    '2xl': '1rem',
+  },
+  boxShadow: {
+    '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+  },
+  
+},
+
   },
   plugins: [],
 };
