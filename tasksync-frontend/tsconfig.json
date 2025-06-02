@@ -1,9 +1,9 @@
 {
     "compilerOptions": {
     // ... existing config
-    "baseUrl": ".",
+    "baseUrl": "src",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./*"]
     }
   },
   "files": [],
