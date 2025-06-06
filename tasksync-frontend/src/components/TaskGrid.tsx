@@ -1,11 +1,18 @@
-// src/components/TaskGrid.tsx
-
 import type { Task } from "../Types/task";
 import TaskCard from "./TaskCard";
+import Masonry from "react-masonry-css";
 
 interface TaskGridProps {
   tasks: Task[];
 }
+
+const breakpointColumnsObj = {
+  default: 5,
+  1600: 4,
+  1200: 3,
+  900: 2,
+  600: 1,
+};
 
 const TaskGrid = ({ tasks }: TaskGridProps) => {
   if (tasks.length === 0) {
@@ -17,10 +24,16 @@ const TaskGrid = ({ tasks }: TaskGridProps) => {
   }
 
   return (
-    <div className="w-full px-6 py-8 grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 justify-items-center">
-      {tasks.map((task) => (
-        <TaskCard key={task.id} task={task} />
-      ))}
+    <div className="px-6 py-8">
+      <Masonry
+        breakpointCols={breakpointColumnsObj}
+        className="flex gap-6"
+        columnClassName="flex flex-col gap-6"
+      >
+        {tasks.map((task) => (
+          <TaskCard key={task.id} task={task} />
+        ))}
+      </Masonry>
     </div>
   );
 };
