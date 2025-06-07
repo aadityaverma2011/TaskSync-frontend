@@ -31,7 +31,7 @@ const Header = ({ searchQuery, onSearchChange }: HeaderProps) => {
           <Search className="absolute left-2 top-2.5 w-4 h-4 text-zinc-400" />
           <Input
             type="text"
-            placeholder="Search tasks"
+            placeholder=""
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
             className="pl-8 bg-zinc-900 text-sm border border-zinc-700 text-white placeholder:text-zinc-400"
