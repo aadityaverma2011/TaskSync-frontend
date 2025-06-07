@@ -9,18 +9,26 @@ import axios from "axios";
 import { API_BASE_URL } from "../config";
 
 const Tasks = () => {
+  const [searchQuery, setSearchQuery] = useState("");
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(true);
   const [sortOrder, setSortOrder] = useState<"newest" | "oldest">("newest");
   const [priorityFilter, setPriorityFilter] = useState<"all" | "high" | "medium" | "low">("all");
   // Filter + sort logic
   const filteredTasks = tasks
+  .filter((task) =>
+    [task.title, task.description, task.due_date]
+      .some((field) =>
+        field.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+  )
   .filter((task) => priorityFilter === "all" || task.priority === priorityFilter)
   .sort((a, b) => {
     const aDate = new Date(a.due_date).getTime();
     const bDate = new Date(b.due_date).getTime();
     return sortOrder === "newest" ? bDate - aDate : aDate - bDate;
   });
+
   useEffect(() => {
     const fetchTasks = async () => {
       try {
@@ -42,7 +50,8 @@ const Tasks = () => {
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100 w-full">
       <div className="w-screen">
-        <Header />
+        <Header searchQuery={searchQuery} onSearchChange={setSearchQuery} />
+
       </div>
 
       {/* Filter bar */}
