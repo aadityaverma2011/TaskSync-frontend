@@ -1,5 +1,3 @@
-// src/components/TaskFilterBar.tsx
-
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,10 +9,21 @@ import {
 import { Button } from "../components/ui/button";
 import { ChevronDown } from "lucide-react";
 
-const TaskFilterBar = () => {
+interface TaskFilterBarProps {
+  sortOrder: "newest" | "oldest";
+  priority: "all" | "high" | "medium" | "low";
+  onSortChange: (sort: "newest" | "oldest") => void;
+  onPriorityChange: (priority: "all" | "high" | "medium" | "low") => void;
+}
+
+const TaskFilterBar = ({
+  sortOrder,
+  priority,
+  onSortChange,
+  onPriorityChange,
+}: TaskFilterBarProps) => {
   return (
-    <div className="w-screen  h-14 flex items-center justify-end px-6">
-      {/* Combined Filter Dropdown */}
+    <div className="w-screen h-14 flex items-center justify-end px-6">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
@@ -27,15 +36,20 @@ const TaskFilterBar = () => {
 
         <DropdownMenuContent align="end" className="bg-zinc-900 border-zinc-700 text-white">
           <DropdownMenuLabel className="text-zinc-400">Sort By Date</DropdownMenuLabel>
-          <DropdownMenuItem>New to Oldest</DropdownMenuItem>
-          <DropdownMenuItem>Old to Newest</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => onSortChange("newest")}>
+            New to Oldest
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => onSortChange("oldest")}>
+            Old to Newest
+          </DropdownMenuItem>
 
           <DropdownMenuSeparator />
 
           <DropdownMenuLabel className="text-zinc-400">Priority</DropdownMenuLabel>
-          <DropdownMenuItem>High</DropdownMenuItem>
-          <DropdownMenuItem>Medium</DropdownMenuItem>
-          <DropdownMenuItem>Low</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => onPriorityChange("all")}>All</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => onPriorityChange("high")}>High</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => onPriorityChange("medium")}>Medium</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => onPriorityChange("low")}>Low</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
